@@ -1,27 +1,40 @@
 import enums.Gender;
+import models.Post;
 import models.User;
+import service.service.PostServiceImpl;
 import service.service.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        User[] users = {
-                new User(1L, "alice@example.com", "password123", "Alice Johnson", Gender.FEMALE),
-                new User(2L, "bob@example.com", "password123", "Bob Smith", Gender.MALE),
-                new User(3L, "charlie@example.com", "password123", "Charlie Brown", Gender.MALE),
-                new User(4L, "diana@example.com", "password123", "Diana Prince", Gender.FEMALE),
-                new User(5L, "eve@example.com", "password123", "Eve Adams", Gender.FEMALE),
-                new User(6L, "frank@example.com", "password123", "Frank White", Gender.MALE),
-                new User(7L, "grace@example.com", "password123", "Grace Hopper", Gender.FEMALE),
-                new User(8L, "hank@example.com", "password123", "Hank Pym", Gender.MALE),
-                new User(9L, "ivy@example.com", "password123", "Ivy Lee", Gender.FEMALE)};
-
+        List<User>users=new ArrayList<>();
+        List<Post>posts=new ArrayList<>();
         UserServiceImpl userService=new UserServiceImpl();
-        System.out.println(userService.register("alice@example.com", "passwor"));
+        PostServiceImpl postService=new PostServiceImpl();
+         User user1= new User(1L, "alice@example.com", "password123", "Alice Johnson", Gender.FEMALE);
+         Post post1=new Post(1L,"\"https://example.com/images/bob.jpg\"","in the sity");
+        System.out.println(posts.add(post1));
+        System.out.println(users.add(user1));
+        System.out.println("USER_SERVICE");
+        System.out.println("Registration");
+         System.out.println(userService.register("alice@example.com", "password123"));
+        System.out.println("Login");
+        System.out.println(userService.login("alice@example.com"));
+        System.out.println("Get user by email");
+        System.out.println(userService.getUserByEmail("alice@example.com"));
+        System.out.println("All users");
+        System.out.println(userService.getAllUsers());
+
+        System.out.println("Post_Service");
+        System.out.println("Add post to user");
+        System.out.println(postService.addPostToUser("alice@example.com", post1));
+        System.out.println("delete Post By Id");
+        System.out.println(postService.deletePostById(1L));
 
     }
 }

@@ -2,6 +2,9 @@ package models;
 
 import enums.Gender;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 private Long uniqueId;
 private String email;
@@ -17,6 +20,10 @@ private Gender gender;
         this.gender = gender;
     }
 
+    public User(String email, String password) {
+    }
+
+    List<Post> posts=new ArrayList<>();
     public Long getUniqueId() {
         return uniqueId;
     }
@@ -55,6 +62,10 @@ private Gender gender;
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public void addPost(Post post) {
+        posts.add(post);
     }
 
     @Override

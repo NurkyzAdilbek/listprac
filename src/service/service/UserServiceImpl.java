@@ -1,37 +1,55 @@
 package service.service;
 
+import enums.Gender;
+import models.Post;
 import models.User;
 import service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+    List<User>users=new ArrayList<>();
+    List<Post>posts=new ArrayList<>();
     @Override
-    public String register (String email, String password) throws RuntimeException{
-        try {
-        if (password.length()<8){
-            throw new RuntimeException();
+    public User register (String email, String password) {
+        for (User user:users){
+            if (user.getEmail().equals(email)){
+                System.out.println("Mynday email eje bar");
+
+            }
+            else {
+                User newUser=new User(email,password);
+                users.add(newUser);
+                return newUser;
+            }
         }
-            System.out.println(password);
-        }
-        catch (RuntimeException runtimeException){
-            return "Password az ";
-        }
-        return " Sie haben erfolgreich registiert";
+
+        return null;
     }
 
     @Override
-    public String login(String email) {
+    public User login(String email) {
+        for (User user:users){
+            if (user.getEmail().equals(email)){
+                return user;
+
+            }}
         return null;
     }
 
     @Override
     public User getUserByEmail(String email) {
+        for (User user:users){
+            if (user.getEmail().equals(email)){
+                return user;
+
+            }}
         return null;
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return users;
     }
 }
